@@ -34,8 +34,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 
-import org.apache.openmeetings.IApplication;
-import org.apache.openmeetings.IWebSession;
+import org.apache.openmeetings.db.IApplication;
+import org.apache.openmeetings.db.IWebSession;
 import org.apache.openmeetings.db.dao.label.LabelDao;
 import org.apache.openmeetings.util.OMContextListener;
 import org.apache.wicket.Application;

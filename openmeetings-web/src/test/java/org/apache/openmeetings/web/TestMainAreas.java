@@ -40,8 +40,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.function.Consumer;
 
-import org.apache.openmeetings.AbstractWicketTester;
-import org.apache.openmeetings.util.OmException;
 import org.apache.openmeetings.web.admin.backup.BackupPanel;
 import org.apache.openmeetings.web.admin.configurations.ConfigsPanel;
 import org.apache.openmeetings.web.admin.connection.ConnectionsPanel;
@@ -60,12 +58,14 @@ import org.apache.openmeetings.web.pages.auth.SignInPage;
 import org.apache.openmeetings.web.pages.install.InstallWizardPage;
 import org.apache.openmeetings.web.room.RoomPanel;
 import org.apache.openmeetings.web.room.wb.AbstractWbPanel;
+import org.apache.openmeetings.web.test.AbstractWicketTesterTest;
 import org.apache.openmeetings.web.user.calendar.CalendarPanel;
 import org.apache.openmeetings.web.user.dashboard.OmDashboardPanel;
 import org.apache.openmeetings.web.user.profile.EditProfilePanel;
 import org.apache.openmeetings.web.user.profile.MessagesContactsPanel;
 import org.apache.openmeetings.web.user.record.RecordingsPanel;
 import org.apache.openmeetings.web.user.rooms.RoomsSelectorPanel;
+import org.apache.openmeetings.util.OmException;
 import org.apache.openmeetings.web.util.OmUrlFragment.AreaKeys;
 import org.apache.wicket.authorization.UnauthorizedInstantiationException;
 import org.apache.wicket.behavior.AbstractAjaxBehavior;
@@ -73,7 +73,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class TestMainAreas extends AbstractWicketTester {
+class TestMainAreas extends AbstractWicketTesterTest {
 	private static final Logger log = LoggerFactory.getLogger(TestMainAreas.class);
 
 	@Test

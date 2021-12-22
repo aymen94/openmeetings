@@ -19,9 +19,9 @@
 package org.apache.openmeetings.user;
 
 import static java.util.UUID.randomUUID;
+import static org.apache.openmeetings.web.app.WebSession.getUserId;
 import static org.apache.openmeetings.util.OpenmeetingsVariables.isSipEnabled;
 import static org.apache.openmeetings.util.OpenmeetingsVariables.setSipEnabled;
-import static org.apache.openmeetings.web.app.WebSession.getUserId;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -29,11 +29,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import org.apache.openmeetings.AbstractWicketTester;
 import org.apache.openmeetings.db.entity.user.User;
+import org.apache.openmeetings.web.test.AbstractWicketTesterTest;
 import org.junit.jupiter.api.Test;
 
-class TestUserContact extends AbstractWicketTester {
+class TestUserContact extends AbstractWicketTesterTest {
 
 	@Test
 	void testGetUser() {

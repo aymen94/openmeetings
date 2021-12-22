@@ -19,11 +19,11 @@
 package org.apache.openmeetings.webservice;
 
 import static java.util.UUID.randomUUID;
-import static org.apache.openmeetings.AbstractJUnitDefaults.ONE_HOUR;
-import static org.apache.openmeetings.AbstractJUnitDefaults.createPass;
-import static org.apache.openmeetings.AbstractJUnitDefaults.createUser;
-import static org.apache.openmeetings.AbstractJUnitDefaults.getAppointment;
-import static org.apache.openmeetings.AbstractJUnitDefaults.getUser;
+import static org.apache.openmeetings.web.test.AbstractOmServerTest.ONE_HOUR;
+import static org.apache.openmeetings.web.test.AbstractOmServerTest.createPass;
+import static org.apache.openmeetings.web.test.AbstractOmServerTest.createUser;
+import static org.apache.openmeetings.web.test.AbstractOmServerTest.getAppointment;
+import static org.apache.openmeetings.web.test.AbstractOmServerTest.getUser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -37,7 +37,6 @@ import java.util.List;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.Response;
 
-import org.apache.openmeetings.AbstractJUnitDefaults;
 import org.apache.openmeetings.db.dao.calendar.AppointmentDao;
 import org.apache.openmeetings.db.dao.calendar.MeetingMemberDao;
 import org.apache.openmeetings.db.dao.room.InvitationDao;
@@ -51,6 +50,7 @@ import org.apache.openmeetings.db.entity.calendar.Appointment;
 import org.apache.openmeetings.db.entity.calendar.MeetingMember;
 import org.apache.openmeetings.db.entity.room.Room;
 import org.apache.openmeetings.db.entity.user.User;
+import org.apache.openmeetings.web.test.AbstractOmServerTest;
 import org.apache.openmeetings.webservice.util.AppointmentParamConverter;
 import org.junit.jupiter.api.Test;
 
@@ -69,7 +69,7 @@ class TestCalendarService extends AbstractWebServiceTest {
 		u = getBean(UserDao.class).get(u.getId());
 
 		Date start = new Date();
-		Appointment a = AbstractJUnitDefaults.createAppointment(getBean(AppointmentDao.class), getAppointment(u, r, start, new Date(start.getTime() + ONE_HOUR)));
+		Appointment a = AbstractOmServerTest.createAppointment(getBean(AppointmentDao.class), getAppointment(u, r, start, new Date(start.getTime() + ONE_HOUR)));
 
 		AppointmentDTO app = getClient(getCalendarUrl()).path("/room/" + a.getRoom().getId()).query("sid", sr.getMessage())
 				.get(AppointmentDTO.class);

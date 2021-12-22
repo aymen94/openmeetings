@@ -46,7 +46,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/apache/openmeetings.git</connection>
 		<developerConnection>scm:git:https://github.com/apache/openmeetings.git</developerConnection>
-		<url>https://github.com/apache/openmeetings.git</url>
+		<url>https://github.com/apache/openmeetings/tree/6.2.0</url>
 		<tag>HEAD</tag>
 	</scm>
 	<profiles>
@@ -55,7 +55,6 @@
 			<properties>
 				<assembly.finalName>server</assembly.finalName>
 				<assembly.descriptor>quick</assembly.descriptor>
-				<site.skip>true</site.skip>
 			</properties>
 			<build>
 				<plugins>
@@ -119,7 +118,7 @@
 			<id>prepare-web-server</id>
 			<activation>
 				<file>
-					<missing>web-server/apache-tomcat-9.0.50.tar.gz</missing> <!-- TODO should be in-sync with global property -->
+					<missing>web-server/apache-tomcat-9.0.56.tar.gz</missing> <!-- TODO should be in-sync with global property -->
 				</file>
 			</activation>
 			<build>
@@ -152,7 +151,6 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>${exec-maven-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>generate-configs-xml-site</id>

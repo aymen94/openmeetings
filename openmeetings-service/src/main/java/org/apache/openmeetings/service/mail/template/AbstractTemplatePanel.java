@@ -22,8 +22,8 @@ import static org.apache.openmeetings.db.util.FormatHelper.isRtlLanguage;
 
 import java.util.Locale;
 
-import org.apache.openmeetings.IApplication;
-import org.apache.openmeetings.IWebSession;
+import org.apache.openmeetings.db.IApplication;
+import org.apache.openmeetings.db.IWebSession;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.TransparentWebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;

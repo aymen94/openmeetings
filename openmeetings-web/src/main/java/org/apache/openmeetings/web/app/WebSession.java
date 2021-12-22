@@ -41,8 +41,8 @@ import java.util.Set;
 import java.util.TimeZone;
 
 import org.apache.commons.lang3.time.FastDateFormat;
-import org.apache.openmeetings.IWebSession;
 import org.apache.openmeetings.core.ldap.LdapLoginManager;
+import org.apache.openmeetings.db.IWebSession;
 import org.apache.openmeetings.db.dao.basic.ConfigurationDao;
 import org.apache.openmeetings.db.dao.label.LabelDao;
 import org.apache.openmeetings.db.dao.room.InvitationDao;

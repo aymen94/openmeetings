@@ -20,11 +20,11 @@ package org.apache.openmeetings.webservice;
 
 import static java.util.UUID.randomUUID;
 import static javax.ws.rs.core.MediaType.APPLICATION_FORM_URLENCODED;
-import static org.apache.openmeetings.AbstractJUnitDefaults.adminUsername;
-import static org.apache.openmeetings.AbstractJUnitDefaults.createPass;
-import static org.apache.openmeetings.AbstractJUnitDefaults.rnd;
-import static org.apache.openmeetings.AbstractJUnitDefaults.userpass;
 import static org.apache.openmeetings.db.util.ApplicationHelper.ensureApplication;
+import static org.apache.openmeetings.web.test.AbstractOmServerTest.adminUsername;
+import static org.apache.openmeetings.web.test.AbstractOmServerTest.createPass;
+import static org.apache.openmeetings.web.test.AbstractOmServerTest.rnd;
+import static org.apache.openmeetings.web.test.AbstractOmServerTest.userpass;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -46,8 +46,8 @@ import org.apache.openmeetings.db.dto.user.ExternalUserDTO;
 import org.apache.openmeetings.db.dto.user.UserDTO;
 import org.apache.openmeetings.db.entity.user.Address;
 import org.apache.openmeetings.db.entity.user.User;
-import org.apache.openmeetings.util.OmException;
 import org.apache.openmeetings.web.app.WebSession;
+import org.apache.openmeetings.util.OmException;
 import org.apache.wicket.util.string.StringValue;
 import org.apache.wicket.util.string.Strings;
 import org.junit.jupiter.api.Test;
@@ -177,8 +177,20 @@ class TestUserService extends AbstractWebServiceTest {
 		ServiceResult r = login();
 		Collection<? extends UserDTO> users = getClient(getUserUrl())
 				.path("/")
-				.query("sid", r.getMessage()).getCollection(UserDTO.class);
+				.query("sid", r.getMessage())
+				.getCollection(UserDTO.class);
 		assertNotNull(users, "Collection should be not null");
 		assertFalse(users.isEmpty(), "Collection should be not empty");
+	}
+
+	@Test
+	void listNoAuth() {
+		Response r = getClient(getUserUrl())
+				.path("/")
+				.get();
+		assertEquals(500, r.getStatus(), "Not allowed error");
+		assertTrue(r.hasEntity());
+		ServiceResult result = r.readEntity(ServiceResult.class);
+		assertEquals(ServiceResult.Type.ERROR.name(), result.getType());
 	}
 }

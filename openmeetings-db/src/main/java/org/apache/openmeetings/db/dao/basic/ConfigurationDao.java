@@ -41,7 +41,7 @@ import org.apache.openjpa.event.RemoteCommitProvider;
 import org.apache.openjpa.event.TCPRemoteCommitProvider;
 import org.apache.openjpa.persistence.OpenJPAEntityManagerSPI;
 import org.apache.openjpa.persistence.OpenJPAPersistence;
-import org.apache.openmeetings.IApplication;
+import org.apache.openmeetings.db.IApplication;
 import org.apache.openmeetings.db.dao.IDataProviderDao;
 import org.apache.openmeetings.db.dao.server.OAuth2Dao;
 import org.apache.openmeetings.db.dao.user.UserDao;

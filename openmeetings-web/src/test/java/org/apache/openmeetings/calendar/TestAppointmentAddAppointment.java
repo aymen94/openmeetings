@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.apache.openmeetings.AbstractWicketTester;
 import org.apache.openmeetings.db.dao.calendar.MeetingMemberDao;
 import org.apache.openmeetings.db.entity.calendar.Appointment;
 import org.apache.openmeetings.db.entity.calendar.Appointment.Reminder;
@@ -38,6 +37,7 @@ import org.apache.openmeetings.db.entity.room.Room;
 import org.apache.openmeetings.db.entity.user.User;
 import org.apache.openmeetings.service.calendar.AppointmentLogic;
 import org.apache.openmeetings.web.app.WebSession;
+import org.apache.openmeetings.web.test.AbstractWicketTesterTest;
 import org.apache.wicket.util.string.StringValue;
 import org.apache.wicket.util.string.Strings;
 import org.junit.jupiter.api.Test;
@@ -45,7 +45,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-class TestAppointmentAddAppointment extends AbstractWicketTester {
+class TestAppointmentAddAppointment extends AbstractWicketTesterTest {
 	private static final Logger log = LoggerFactory.getLogger(TestAppointmentAddAppointment.class);
 
 	@Autowired

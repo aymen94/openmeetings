@@ -24,7 +24,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
@@ -32,7 +32,6 @@ import org.slf4j.LoggerFactory;
 
 import net.fortuna.ical4j.data.CalendarOutputter;
 import net.fortuna.ical4j.model.Calendar;
-import net.fortuna.ical4j.model.DateTime;
 import net.fortuna.ical4j.model.TimeZone;
 import net.fortuna.ical4j.model.TimeZoneRegistry;
 import net.fortuna.ical4j.model.TimeZoneRegistryFactory;
@@ -66,6 +65,7 @@ import net.fortuna.ical4j.validate.ValidationException;
  */
 public class IcalHandler {
 	private static final Logger log = LoggerFactory.getLogger(IcalHandler.class);
+	private static final TimeZoneRegistry registry = TimeZoneRegistryFactory.getInstance().createRegistry();
 	static {
 		System.setProperty("net.fortuna.ical4j.timezone.update.enabled", "false");
 		System.setProperty("net.fortuna.ical4j.timezone.cache.impl", "net.fortuna.ical4j.util.MapTimeZoneCache");
@@ -99,18 +99,11 @@ public class IcalHandler {
 		icsCalendar.getProperties().add(method);
 	}
 
-	public IcalHandler createVEvent(String tz, Date startDate, Date endDate, String name) {
-		TimeZoneRegistry registry = TimeZoneRegistryFactory.getInstance().createRegistry();
-
-		timeZone = registry.getTimeZone(tz);
+	public IcalHandler createVEvent(ZonedDateTime start, ZonedDateTime end, String name) {
+		timeZone = registry.getTimeZone(start.getZone().getId());
 		if (timeZone == null) {
-			throw new NoSuchElementException("Unable to get time zone by id provided: " + tz);
+			throw new NoSuchElementException("Unable to get time zone by id provided: " + start.getZone());
 		}
-
-		DateTime start = new DateTime(startDate);
-		start.setTimeZone(timeZone);
-		DateTime end = new DateTime(endDate);
-		end.setTimeZone(timeZone);
 
 		meeting = new VEvent(start, end, name);
 		meeting.getProperties().add(Transp.OPAQUE);
@@ -118,13 +111,13 @@ public class IcalHandler {
 		return this;
 	}
 
-	public IcalHandler setCreated(Date date) {
-		meeting.getProperties().add(new Created(new DateTime(date)));
+	public IcalHandler setCreated(ZonedDateTime date) {
+		meeting.getProperties().add(new Created(date.toInstant()));
 		return this;
 	}
 
-	public IcalHandler setModified(Date date) {
-		meeting.getProperties().add(new LastModified(new DateTime(date == null ? new Date() : date)));
+	public IcalHandler setModified(ZonedDateTime date) {
+		meeting.getProperties().add(new LastModified((date == null ? ZonedDateTime.now() : date).toInstant()));
 		return this;
 	}
 

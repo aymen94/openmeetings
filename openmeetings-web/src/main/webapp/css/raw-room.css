@@ -32,14 +32,37 @@
 	left: 0;
 }
 .room-block .sb-wb .sidebar #room-sidebar-tabs {
-	height: calc(100% - var(--buffer-size) - var(--activities-height));
+	height: calc(100% - var(--activities-height));
+}
+.room-block .sb-wb .sidebar #room-sidebar-tabs .nav.nav-tabs {
+	flex-wrap: nowrap;
+	padding-inline-end: 40px;
+	gap: 5px;
+}
+.room-block .sb-wb .sidebar #room-sidebar-tabs .nav.nav-tabs .nav-item {
+	flex-direction: column;
+	flex-grow: 1;
 }
 .room-block .sb-wb .sidebar .tab {
 	padding: 5px 0 0 0;
+	width: 100%;
+	overflow: hidden;
 }
 .room-block .sb-wb .sidebar .tab i {
 	font-size: 2.0em;
 	vertical-align: top;
+}
+.room-block .sb-wb .sidebar .tab .label {
+	width: calc((var(--sidebar-width) - 50px) / 2 - 40px);
+	display: inline-block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.room-block .sb-wb .sidebar .tab.user {
+	padding-inline-end: 15px;
+}
+.room-block .sb-wb .sidebar .tab.user .label {
+	width: calc((var(--sidebar-width) - 50px) / 2 - 60px);
 }
 html[dir="rtl"] .room-block .sb-wb .sidebar {
 	right: 0;
@@ -108,13 +131,13 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 	border-radius: 50%;
 }
 .room-block .sb-wb .sidebar .user-list .user.entry .om-icon.user-status.user {
-	background-color: var(--success);
+	background-color: var(--bs-success);
 }
 .room-block .sb-wb .sidebar .user-list .user.entry .om-icon.user-status.wb {
-	background-color: var(--warning);
+	background-color: var(--bs-warning);
 }
 .room-block .sb-wb .sidebar .user-list .user.entry .om-icon.user-status.mod {
-	background-color: var(--danger);
+	background-color: var(--bs-danger);
 }
 .room-block .sb-wb .sidebar .user-list .user.entry .om-icon.audio-activity {
 	position: absolute;
@@ -142,7 +165,7 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 	display: none !important;
 }
 .room-block .sb-wb .sidebar .icon-undock, .room-block .sb-wb .sidebar .icon-dock {
-	font-size: 1.6em;
+	font-size: 1.2em;
 	padding-top: 3px;
 }
 .room-block .sb-wb .sidebar .icon-dock:before {
@@ -170,8 +193,8 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 .audio-activity.om-icon {
 	opacity: 0.2;
 	border-radius: 50%;
-	background-color: var(--success);
-	border: 1px solid var(--gray-dark);
+	background-color: var(--bs-success);
+	border: 1px solid var(--bs-gray-dark);
 }
 .typing-activity {
 	display: none;
@@ -182,7 +205,7 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 	position: absolute;
 	left: 0;
 	animation: typing-ani 2s infinite;
-	color: var(--primary);
+	color: var(--bs-primary);
 }
 @keyframes typing-ani {
 	0% {
@@ -207,12 +230,12 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 .om-icon.volume-control a.volume-on::before {
 	content: "\f027";
 	font-size: 1.2em;
-	color: var(--secondary);
+	color: var(--bs-secondary);
 }
 .om-icon.volume-control a.volume-off::before {
 	content: "\f6a9";
 	font-size: 1.2em;
-	color: var(--danger);
+	color: var(--bs-danger);
 }
 .om-icon.volume-control .dropdown-menu {
 	width: 20px;
@@ -225,17 +248,17 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 .om-icon.volume-control .dropdown-menu .slider {
 	border-radius: 0;
 	background-color: white;
-	border-color: var(--secondary);
+	border-color: var(--bs-secondary);
 }
 .om-icon.volume-control .dropdown-menu .slider .ui-slider-range {
 	border-radius: 0;
-	background-color: var(--light);
+	background-color: var(--bs-light);
 }
 .om-icon.volume-control .dropdown-menu .slider .handle {
 	border-radius: 0;
-	background-color: var(--light);
-	border-color: var(--secondary);
-	color: var(--secondary);
+	background-color: var(--bs-light);
+	border-color: var(--bs-secondary);
+	color: var(--bs-secondary);
 }
 .user-video .om-icon.volume-control
 , .user-video .btn.btn-refresh
@@ -247,7 +270,7 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 }
 .user-video .om-icon.volume-control {
 	border-radius: 0.2rem;
-	border: 1px solid var(--secondary);
+	border: 1px solid var(--bs-secondary);
 	margin-top: 3px;
 	padding: 1px;
 }
@@ -273,11 +296,11 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 	font-size: .6em;
 }
 .right.om-icon i::before {
-	color: var(--success);
+	color: var(--bs-success);
 	content: "\f055";
 }
 .right.om-icon.granted i::before {
-	color: var(--danger);
+	color: var(--bs-danger);
 	content: "\f056";
 }
 .right.moderator.om-icon::before {
@@ -312,18 +335,18 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 }
 .activity.cam.enabled.om-icon::before {
 	content: '\f03d';
-	color: var(--success);
+	color: var(--bs-success);
 }
 .activity.cam.om-icon, .activity.mic.om-icon {
 	display: none;
 }
 .activity.cam.om-icon::before {
 	content: '\f4e2';
-	color: var(--warning);
+	color: var(--bs-warning);
 }
 .activity.mic.enabled.om-icon::before {
 	content: '\f130';
-	color: var(--success);
+	color: var(--bs-success);
 }
 .om-icon.disabled {
 	filter: grayscale(100%);
@@ -332,11 +355,11 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 }
 .activity.mic.om-icon::before {
 	content: '\f131';
-	color: var(--warning);
+	color: var(--bs-warning);
 }
 .room-block .sb-wb .sidebar .user-list .user.entry.current {
 	font-weight: bold;
-	background-color: var(--light);
+	background-color: var(--bs-light);
 }
 .dropdown-menu.video.volume, .dropdown-menu.video.volume li {
 	width: 20px;
@@ -364,10 +387,7 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 }
 .room-block .sb-wb .sidebar .tab.om-icon.big {
 	line-height: 30px;
-	width: auto;
 	padding-left: 10px;
-	min-width: 100px;
-	max-width: 120px;
 	position: relative;
 }
 .room-block .sb-wb .sidebar .tab .badge {
@@ -375,22 +395,9 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 	bottom: 0;
 	right: 2px;
 }
-.room-block .sb-wb .sidebar .tab.om-icon.big .label {
-	max-width: 60px;
-	display: inline-block;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
 .room-block.narrow .sidebar .tab.om-icon.big {
-	max-width: 40px;
-	min-width: auto;
-	width: 40px;
 	padding-left: 6px;
 	padding-right: 0;
-}
-.room-block.narrow .sidebar .tab.om-icon.big .label {
-	display: none;
 }
 .room-block .wait-moder {
 	position: fixed;
@@ -404,7 +411,7 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 
 /************ VIDEO **************/
 .mic-on {
-	background-color: var(--warning);
+	background-color: var(--bs-warning);
 }
 .ui-dialog.video
 , .ui-dialog.sharer
@@ -417,14 +424,14 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 , .sharer .ui-dialog-titlebar
 , .wb-tool-settings .ui-dialog-titlebar
 {
-	background-color: var(--white);
+	background-color: var(--bs-white);
 }
 .sharer .ui-dialog-titlebar-close {
 	position: absolute;
 	top: 20px
 }
 .user-video .buttonpane {
-	background-color: var(--white);
+	background-color: var(--bs-white);
 	position: absolute;
 	right: 2px;
 	top: 2px
@@ -524,7 +531,7 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 	right: -21px;
 	bottom: -16px;
 	background: repeating-linear-gradient(
-		var(--dark), var(--dark) 3px, transparent 3px, transparent 5px
+		var(--bs-dark), var(--bs-dark) 3px, transparent 3px, transparent 5px
 	);
 }
 .room-block .room-container .user-video .header {
@@ -664,14 +671,12 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 	right: 40px;
 	bottom: 40px;
 	padding: 5px;
-	background-color: var(--info);
+	background-color: var(--bs-info);
 }
 #quick-vote .control {
 	display: inline-block;
-	width: 40px;
-	height: 40px;
-	background-repeat: no-repeat;
-	background-size: 35px;
+	width: 48px;
+	height: 48px;
 	position: relative;
 	font-size: 1.5em;
 }
@@ -679,16 +684,17 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 	position: absolute;
 	right: 0;
 	bottom: 0;
+	font-size: 0.5em;
 }
 #quick-vote .control i::before {
 	font-size: 2.0em;
 	line-height: 1.2em;
 }
 #quick-vote .control.pro i::before {
-	color: var(--success);
+	color: var(--bs-success);
 }
 #quick-vote .control.con i::before {
-	color: var(--danger);
+	color: var(--bs-danger);
 }
 #quick-vote .close-btn {
 	float: right;
@@ -744,7 +750,7 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 }
 .video .mute-others::before {
 	content: '\f3c9';
-	color: var(--warning);
+	color: var(--bs-warning);
 	line-height: 1em;
 	font-size: 2.5em;
 }
@@ -775,9 +781,6 @@ html[dir="rtl"] .room-block .sb-wb .sidebar {
 @media screen and (max-width: 1280px) {
 	.room-block .sb-wb .sidebar .tab.om-icon.big {
 		padding-right: 0;
-	}
-	.room-block.big .sb-wb .sidebar .tab.om-icon.big {
-		max-width: 80px;
 	}
 	.room-block .sb-wb .sidebar .user-list .user.name {
 		display: none;

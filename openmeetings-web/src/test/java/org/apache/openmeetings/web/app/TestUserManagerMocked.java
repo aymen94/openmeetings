@@ -46,6 +46,7 @@ import org.apache.openmeetings.db.entity.user.User.Type;
 import org.apache.openmeetings.db.manager.IClientManager;
 import org.apache.openmeetings.service.mail.EmailManager;
 import org.apache.openmeetings.util.crypt.SCryptImplementation;
+import org.apache.openmeetings.web.test.RegularTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -55,6 +56,7 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
+@RegularTest
 @ExtendWith(MockitoExtension.class)
 class TestUserManagerMocked {
 	@Mock

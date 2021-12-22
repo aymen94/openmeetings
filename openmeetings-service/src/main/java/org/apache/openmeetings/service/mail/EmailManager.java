@@ -23,8 +23,8 @@ import static org.apache.openmeetings.util.OpenmeetingsVariables.getDefaultLang;
 import static org.apache.openmeetings.util.OpenmeetingsVariables.getWicketApplicationName;
 import static org.apache.openmeetings.util.OpenmeetingsVariables.isSendRegisterEmail;
 
-import org.apache.openmeetings.IApplication;
 import org.apache.openmeetings.core.mail.MailHandler;
+import org.apache.openmeetings.db.IApplication;
 import org.apache.openmeetings.service.mail.template.RegisterUserTemplate;
 import org.apache.wicket.Application;
 import org.apache.wicket.request.mapper.parameter.PageParameters;

@@ -30,7 +30,7 @@
 		<param-value>1048576</param-value> <!-- 1MB by default -->
 	</context-param>
 	<listener>
-		<listener-class>org.apache.openmeetings.util.OMContextListener</listener-class>
+		<listener-class>org.apache.openmeetings.web.util.OMContextListener</listener-class>
 	</listener>
 
 	<filter>

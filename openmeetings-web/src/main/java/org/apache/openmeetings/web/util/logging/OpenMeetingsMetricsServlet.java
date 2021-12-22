@@ -21,8 +21,7 @@ package org.apache.openmeetings.web.util.logging;
 import io.prometheus.client.exporter.MetricsServlet;
 
 public class OpenMeetingsMetricsServlet extends MetricsServlet {
-
-	private static final long serialVersionUID = -2488393857088858502L;
+	private static final long serialVersionUID = 1L;
 
 	public OpenMeetingsMetricsServlet() {
 		super();

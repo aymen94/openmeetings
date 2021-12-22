@@ -151,7 +151,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -161,6 +160,7 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
@@ -230,7 +230,6 @@ import org.apache.openmeetings.db.entity.user.User;
 import org.apache.openmeetings.db.entity.user.UserContact;
 import org.apache.openmeetings.db.util.AuthLevelUtil;
 import org.apache.openmeetings.db.util.XmlHelper;
-import org.apache.openmeetings.util.CalendarPatterns;
 import org.apache.openmeetings.util.OmFileHelper;
 import org.apache.openmeetings.util.StoredFile;
 import org.apache.openmeetings.util.crypt.SCryptImplementation;
@@ -382,7 +381,7 @@ public class BackupImport {
 	}
 
 	private static File unzip(InputStream is) throws IOException  {
-		File f = OmFileHelper.getNewDir(OmFileHelper.getUploadImportDir(), "import_" + CalendarPatterns.getTimeForStreamId(new Date()));
+		File f = OmFileHelper.getNewDir(OmFileHelper.getUploadImportDir(), randomUUID().toString());
 		log.debug("##### EXTRACTING BACKUP TO: {}", f);
 
 		try (ZipInputStream zis = new ZipInputStream(is)) {
@@ -405,90 +404,102 @@ public class BackupImport {
 		return f;
 	}
 
-	public void performImport(InputStream is, ProgressHolder progressHolder) throws Exception {
-		progressHolder.setProgress(0);
-		cleanup();
-		messageFolderMap.put(INBOX_FOLDER_ID, INBOX_FOLDER_ID);
-		messageFolderMap.put(SENT_FOLDER_ID, SENT_FOLDER_ID);
-		messageFolderMap.put(TRASH_FOLDER_ID, TRASH_FOLDER_ID);
+	public void performImport(InputStream is, AtomicInteger progress) throws Exception {
+		File f = null;
+		boolean success = false;
+		try {
+			progress.set(0);
+			cleanup();
+			messageFolderMap.put(INBOX_FOLDER_ID, INBOX_FOLDER_ID);
+			messageFolderMap.put(SENT_FOLDER_ID, SENT_FOLDER_ID);
+			messageFolderMap.put(TRASH_FOLDER_ID, TRASH_FOLDER_ID);
 
-		File f = unzip(is);
+			f = unzip(is);
 
-		BackupVersion ver = getVersion(f);
-		progressHolder.setProgress(2);
-		importConfigs(f);
-		progressHolder.setProgress(7);
-		importGroups(f);
-		progressHolder.setProgress(12);
-		importLdap(f);
-		progressHolder.setProgress(17);
-		importOauth(f);
-		progressHolder.setProgress(22);
-		importUsers(f);
-		progressHolder.setProgress(27);
-		importRooms(f);
-		progressHolder.setProgress(32);
-		importRoomGroups(f);
-		progressHolder.setProgress(37);
-		importChat(f);
-		progressHolder.setProgress(42);
-		importCalendars(f);
-		progressHolder.setProgress(47);
-		importAppointments(f);
-		progressHolder.setProgress(52);
-		importMeetingMembers(f);
-		progressHolder.setProgress(57);
-		importRecordings(f);
-		progressHolder.setProgress(62);
-		importPrivateMsgFolders(f);
-		progressHolder.setProgress(67);
-		importContacts(f);
-		progressHolder.setProgress(72);
-		importPrivateMsgs(f);
-		progressHolder.setProgress(77);
-		List<FileItem> files = importFiles(f);
-		progressHolder.setProgress(82);
-		importPolls(f);
-		progressHolder.setProgress(87);
-		importRoomFiles(f);
-		progressHolder.setProgress(92);
-		importExtraMenus(f);
-		progressHolder.setProgress(95);
+			BackupVersion ver = getVersion(f);
+			progress.set(2);
+			importConfigs(f);
+			progress.set(7);
+			importGroups(f);
+			progress.set(12);
+			importLdap(f);
+			progress.set(17);
+			importOauth(f);
+			progress.set(22);
+			importUsers(f);
+			progress.set(27);
+			importRooms(f);
+			progress.set(32);
+			importRoomGroups(f);
+			progress.set(37);
+			importChat(f);
+			progress.set(42);
+			importCalendars(f);
+			progress.set(47);
+			importAppointments(f);
+			progress.set(52);
+			importMeetingMembers(f);
+			progress.set(57);
+			importRecordings(f);
+			progress.set(62);
+			importPrivateMsgFolders(f);
+			progress.set(67);
+			importContacts(f);
+			progress.set(72);
+			importPrivateMsgs(f);
+			progress.set(77);
+			List<FileItem> files = importFiles(f);
+			progress.set(82);
+			importPolls(f);
+			progress.set(87);
+			importRoomFiles(f);
+			progress.set(92);
+			importExtraMenus(f);
+			progress.set(95);
 
-		log.info("Extra menus import complete, starting copy of files and folders");
-		/*
-		 * ##################### Import real files and folders
-		 */
-		importFolders(f);
-		progressHolder.setProgress(97);
+			log.info("Extra menus import complete, starting copy of files and folders");
+			/*
+			 * ##################### Import real files and folders
+			 */
+			importFolders(f);
+			progress.set(97);
 
-		if (ver.compareTo(BackupVersion.get("4.0.0")) < 0) {
-			for (FileItem bfi : files) {
-				if (bfi.isDeleted()) {
-					continue;
-				}
-				if (BaseFileItem.Type.PRESENTATION == bfi.getType()) {
-					convertOldPresentation(bfi);
-					fileItemDao.updateBase(bfi);
-				}
-				if (BaseFileItem.Type.WML_FILE == bfi.getType()) {
-					try {
-						Whiteboard wb = WbConverter.convert(bfi);
-						wb.save(bfi.getFile().toPath());
-					} catch (Exception e) {
-						log.error("Unexpected error while converting WB", e);
+			if (ver.compareTo(BackupVersion.get("4.0.0")) < 0) {
+				for (FileItem bfi : files) {
+					if (bfi.isDeleted()) {
+						continue;
+					}
+					if (BaseFileItem.Type.PRESENTATION == bfi.getType()) {
+						convertOldPresentation(bfi);
+						fileItemDao.updateBase(bfi);
+					}
+					if (BaseFileItem.Type.WML_FILE == bfi.getType()) {
+						try {
+							Whiteboard wb = WbConverter.convert(bfi);
+							wb.save(bfi.getFile().toPath());
+						} catch (Exception e) {
+							log.error("Unexpected error while converting WB", e);
+						}
 					}
 				}
 			}
+			log.info("File explorer item import complete");
+			success = true;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (f != null) {
+				log.info("Clearing temp files ...");
+				FileUtils.deleteDirectory(f);
+			}
+			cleanup();
+			if (success) {
+				progress.set(100);
+			}
 		}
-		log.info("File explorer item import complete, clearing temp files");
-
-		FileUtils.deleteDirectory(f);
-		cleanup();
-		progressHolder.setProgress(100);
 	}
 
-	void cleanup() {
+	public void cleanup() {
 		ldapMap.clear();
 		oauthMap.clear();
 		userMap.clear();
@@ -505,7 +516,7 @@ public class BackupImport {
 		messageFolderMap.put(TRASH_FOLDER_ID, TRASH_FOLDER_ID);
 	}
 
-	static BackupVersion getVersion(File base) {
+	public static BackupVersion getVersion(File base) {
 		List<BackupVersion> list = new ArrayList<>(1);
 		readList(base, "version.xml", VERSION_LIST_NODE, VERSION_NODE, BackupVersion.class, list::add, true);
 		return list.isEmpty() ? new BackupVersion() : list.get(0);
@@ -514,7 +525,7 @@ public class BackupImport {
 	/*
 	 * ##################### Import Configs
 	 */
-	void importConfigs(File base) throws Exception {
+	public void importConfigs(File base) throws Exception {
 		final Map<Integer, String> keyMap = new HashMap<>();
 		Arrays.stream(KeyEvent.class.getDeclaredFields())
 				.filter(fld -> fld.getName().startsWith("VK_"))
@@ -577,7 +588,7 @@ public class BackupImport {
 	/*
 	 * ##################### Import Groups
 	 */
-	void importGroups(File base) throws Exception {
+	public void importGroups(File base) throws Exception {
 		log.info("Configs import complete, starting group import");
 		readList(base, "organizations.xml", GROUP_LIST_NODE, GROUP_NODE, Group.class, g -> {
 			Long oldId = g.getId();
@@ -590,7 +601,7 @@ public class BackupImport {
 	/*
 	 * ##################### Import LDAP Configs
 	 */
-	Long importLdap(File base) {
+	public Long importLdap(File base) {
 		log.info("Groups import complete, starting LDAP config import");
 		Long[] defaultLdapId = {cfgDao.getLong(CONFIG_DEFAULT_LDAP_ID, null)};
 		readList(base, "ldapconfigs.xml", "ldapconfigs", "ldapconfig", LdapConfig.class, c -> {
@@ -613,7 +624,7 @@ public class BackupImport {
 	/*
 	 * ##################### OAuth2 servers
 	 */
-	void importOauth(File base) {
+	public void importOauth(File base) {
 		log.info("Ldap config import complete, starting OAuth2 server import");
 		readList(base, "oauth2servers.xml", OAUTH_LIST_NODE, OAUTH_NODE, OAuthServer.class
 				, s -> {
@@ -629,7 +640,7 @@ public class BackupImport {
 	/*
 	 * ##################### Import Users
 	 */
-	void importUsers(File base) throws Exception {
+	public void importUsers(File base) throws Exception {
 		log.info("OAuth2 servers import complete, starting user import");
 		String jNameTimeZone = getDefaultTimezone();
 		//add existent emails from database
@@ -755,7 +766,7 @@ public class BackupImport {
 	/*
 	 * ##################### Import Room Groups
 	 */
-	void importRoomGroups(File base) throws Exception {
+	public void importRoomGroups(File base) throws Exception {
 		log.info("Room import complete, starting room groups import");
 		Class<RoomGroup> eClazz = RoomGroup.class;
 		JAXBContext jc = JAXBContext.newInstance(eClazz);
@@ -784,7 +795,7 @@ public class BackupImport {
 	/*
 	 * ##################### Import Chat messages
 	 */
-	void importChat(File base) throws Exception {
+	public void importChat(File base) throws Exception {
 		log.info("Room groups import complete, starting chat messages import");
 		Class<ChatMessage> eClazz = ChatMessage.class;
 		JAXBContext jc = JAXBContext.newInstance(eClazz);
@@ -807,7 +818,7 @@ public class BackupImport {
 	/*
 	 * ##################### Import Calendars
 	 */
-	void importCalendars(File base) throws Exception {
+	public void importCalendars(File base) throws Exception {
 		log.info("Chat messages import complete, starting calendar import");
 		Class<OmCalendar> eClazz = OmCalendar.class;
 		JAXBContext jc = JAXBContext.newInstance(eClazz);
@@ -825,7 +836,7 @@ public class BackupImport {
 	/*
 	 * ##################### Import Appointments
 	 */
-	void importAppointments(File base) throws Exception {
+	public void importAppointments(File base) throws Exception {
 		log.info("Calendar import complete, starting appointement import");
 		Class<Appointment> eClazz = Appointment.class;
 		JAXBContext jc = JAXBContext.newInstance(eClazz);
@@ -860,7 +871,7 @@ public class BackupImport {
 	 *
 	 * Reminder Invitations will be NOT send!
 	 */
-	void importMeetingMembers(File base) throws Exception {
+	public void importMeetingMembers(File base) throws Exception {
 		log.info("Appointement import complete, starting meeting members import");
 		Class<MeetingMember> eClazz = MeetingMember.class;
 		JAXBContext jc = JAXBContext.newInstance(eClazz);
@@ -953,7 +964,7 @@ public class BackupImport {
 	/*
 	 * ##################### Import Recordings
 	 */
-	void importRecordings(File base) throws Exception {
+	public void importRecordings(File base) throws Exception {
 		log.info("Meeting members import complete, starting recordings server import");
 		final Map<Long, Long> folders = new HashMap<>();
 		saveTree(base, "flvRecordings.xml", RECORDING_LIST_NODE, RECORDING_NODE, Recording.class, folders, r -> {
@@ -996,7 +1007,7 @@ public class BackupImport {
 	/*
 	 * ##################### Import Private Message Folders
 	 */
-	void importPrivateMsgFolders(File base) {
+	public void importPrivateMsgFolders(File base) {
 		log.info("Recording import complete, starting private message folder import");
 		readList(base, "privateMessageFolder.xml", MSG_FOLDER_LIST_NODE, MSG_FOLDER_NODE, PrivateMessageFolder.class, p -> {
 			Long folderId = p.getId();
@@ -1141,7 +1152,7 @@ public class BackupImport {
 		}, true);
 	}
 
-	void importExtraMenus(File base) throws Exception {
+	public void importExtraMenus(File base) throws Exception {
 		log.info("Room files complete, starting extra menus import");
 		Class<ExtraMenu> eClazz = ExtraMenu.class;
 		JAXBContext jc = JAXBContext.newInstance(eClazz);

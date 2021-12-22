@@ -23,15 +23,15 @@ import static org.apache.openmeetings.util.OpenmeetingsVariables.getBaseUrl;
 import static org.apache.openmeetings.util.OpenmeetingsVariables.setBaseUrl;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.apache.openmeetings.AbstractJUnitDefaults;
 import org.apache.openmeetings.db.entity.basic.Configuration;
 import org.apache.openmeetings.service.calendar.AppointmentLogic;
+import org.apache.openmeetings.web.test.AbstractOmServerTest;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-class TestAppointmentSchedulerTask extends AbstractJUnitDefaults {
+class TestAppointmentSchedulerTask extends AbstractOmServerTest {
 	private static final Logger log = LoggerFactory.getLogger(TestAppointmentSchedulerTask.class);
 
 	@Autowired

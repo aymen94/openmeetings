@@ -20,11 +20,11 @@ package org.apache.openmeetings.web.user.chat;
 
 import static org.apache.openmeetings.core.util.ChatWebSocketHelper.ID_ALL;
 import static org.apache.openmeetings.core.util.ChatWebSocketHelper.ID_ROOM_PREFIX;
-import static org.apache.openmeetings.util.OpenmeetingsVariables.CONFIG_DASHBOARD_SHOW_CHAT;
-import static org.apache.openmeetings.util.OpenmeetingsVariables.isChatSendOnEnter;
 import static org.apache.openmeetings.web.app.WebSession.getUserId;
 import static org.apache.openmeetings.web.room.RoomPanel.isModerator;
 import static org.apache.openmeetings.web.util.CallbackFunctionHelper.getNamedFunction;
+import static org.apache.openmeetings.util.OpenmeetingsVariables.CONFIG_DASHBOARD_SHOW_CHAT;
+import static org.apache.openmeetings.util.OpenmeetingsVariables.isChatSendOnEnter;
 import static org.apache.openmeetings.web.util.ProfileImageResourceReference.getUrl;
 import static org.apache.wicket.ajax.attributes.CallbackParameter.explicit;
 

@@ -18,10 +18,10 @@
  */
 package org.apache.openmeetings.web.room.menu;
 
+import static org.apache.openmeetings.web.app.WebSession.getUserId;
 import static org.apache.openmeetings.util.OmFileHelper.EXTENSION_PDF;
 import static org.apache.openmeetings.util.OmFileHelper.EXTENSION_PNG;
 import static org.apache.openmeetings.util.OpenmeetingsVariables.isSipEnabled;
-import static org.apache.openmeetings.web.app.WebSession.getUserId;
 
 import java.io.Serializable;
 
@@ -67,8 +67,9 @@ public class ActionsSubMenu implements Serializable {
 	}
 
 	public void init() {
-		RoomInvitationForm rif = new RoomInvitationForm("form", room.getRoom().getId());
-		mp.add(invite = new InvitationDialog("invite", rif));
+		final String roomInviteDialogId = "roomInviteDialog";
+		RoomInvitationForm rif = new RoomInvitationForm("form", room.getRoom().getId(), roomInviteDialogId);
+		mp.add(invite = new InvitationDialog(roomInviteDialogId, rif));
 		rif.setDialog(invite);
 		mp.add(sipDialer = new SipDialerDialog("sipDialer", room));
 		actionsMenu = new OmMenuItem(mp.getString("635"), null, false);

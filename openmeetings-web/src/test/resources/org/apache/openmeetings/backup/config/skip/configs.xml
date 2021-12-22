@@ -27,7 +27,7 @@ see http://openmeetings.apache.org/Upgrade.html for Details
    <configs>
       <config>
          <id><![CDATA[1]]></id>
-         <value><![CDATA[org.apache.openmeetings.util.crypt.SHA256Implementation]]></value>
+         <value><![CDATA[org.apache.openmeetings.web.util.crypt.SHA256Implementation]]></value>
          <created class="java.util.Date"><![CDATA[1502426201301]]></created>
          <comment><![CDATA[This Class is used for Authentification-Crypting. Be carefull what you do here! If you change it while running previous Pass of users will not be workign anymore! for more Information see http://openmeetings.apache.org/CustomCryptMechanism.html]]></comment>
          <deleted><![CDATA[false]]></deleted>
@@ -35,7 +35,7 @@ see http://openmeetings.apache.org/Upgrade.html for Details
       <config>
          <id><![CDATA[1]]></id>
          <key><![CDATA[deleted_test]]></key>
-         <value><![CDATA[org.apache.openmeetings.util.crypt.SHA256Implementation]]></value>
+         <value><![CDATA[org.apache.openmeetings.web.util.crypt.SHA256Implementation]]></value>
          <created class="java.util.Date"><![CDATA[1502426201301]]></created>
          <comment><![CDATA[This Class is used for Authentification-Crypting. Be carefull what you do here! If you change it while running previous Pass of users will not be workign anymore! for more Information see http://openmeetings.apache.org/CustomCryptMechanism.html]]></comment>
          <deleted><![CDATA[true]]></deleted>

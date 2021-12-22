@@ -42,16 +42,16 @@
 		<autoModuleName>apache.openmeetings.parent</autoModuleName>
 		<jdk.version>11</jdk.version>
 		<!-- plugin versions -->
-		<maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
+		<maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
 		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 		<maven-site-plugin.version>3.9.1</maven-site-plugin.version>
-		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
 		<minify-maven-plugin.version>1.7.6</minify-maven-plugin.version>
 		<maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
-		<maven-source-plugin.version>3.2.0</maven-source-plugin.version>
-		<checksum-maven-plugin.version>1.8</checksum-maven-plugin.version>
+		<maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+		<checksum-maven-plugin.version>1.11</checksum-maven-plugin.version>
 		<maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-		<license-maven-plugin.version>1.16</license-maven-plugin.version>
+		<license-maven-plugin.version>2.0.0</license-maven-plugin.version>
 		<reflow-maven-skin.version>2.3.0</reflow-maven-skin.version>
 		<reflow-theme>cerulean</reflow-theme>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -60,7 +60,7 @@
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
 		<maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
 		<maven-bundle-plugin.version>5.1.1</maven-bundle-plugin.version>
-		<maven-war-plugin.version>3.3.1</maven-war-plugin.version>
+		<maven-war-plugin.version>3.3.2</maven-war-plugin.version>
 		<maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
 		<wagon-maven-plugin.version>2.0.2</wagon-maven-plugin.version>
 		<maven-antrun-plugin.version>3.0.0</maven-antrun-plugin.version>
@@ -73,22 +73,23 @@
 		<keytool-maven-plugin.version>1.5</keytool-maven-plugin.version>
 		<maven-jarsigner-plugin.version>3.0.0</maven-jarsigner-plugin.version>
 		<sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
-		<jacoco-maven-plugin.versoin>0.8.6</jacoco-maven-plugin.versoin>
+		<jacoco-maven-plugin.versoin>0.8.7</jacoco-maven-plugin.versoin>
 		<forbiddenapis.version>3.1</forbiddenapis.version>
 		<maven-checkstyle-plugin.version>3.1.1</maven-checkstyle-plugin.version>
 		<frontend-maven-plugin.version>1.11.0</frontend-maven-plugin.version>
+		<swagger-plugin.version>2.1.6</swagger-plugin.version>
 		<!-- dependency versions -->
-		<junit.version>5.8.0-M1</junit.version>
-		<wicket.version>9.5.0-SNAPSHOT</wicket.version>
-		<wicket-jquery-ui.version>9.3.2</wicket-jquery-ui.version>
-		<wicketstuff.version>9.5.0-SNAPSHOT</wicketstuff.version>
-		<wicket-bootstrap.version>5.0.5</wicket-bootstrap.version>
-		<font-awesome.version>5.15.3</font-awesome.version>
-		<spring.version>5.3.9</spring.version>
-		<tomcat.version>9.0.50</tomcat.version>
-		<ical4j.version>3.0.21</ical4j.version>
-		<cxf.version>3.4.4</cxf.version>
-		<io.prometheus.version>0.11.0</io.prometheus.version>
+		<junit.version>5.8.2</junit.version>
+		<wicket.version>9.7.0</wicket.version>
+		<wicket-jquery-ui.version>9.5.0</wicket-jquery-ui.version>
+		<wicketstuff.version>9.7.0</wicketstuff.version>
+		<wicket-bootstrap.version>6.0.0-M6-SNAPSHOT</wicket-bootstrap.version>
+		<font-awesome.version>5.15.4</font-awesome.version>
+		<spring.version>5.3.14</spring.version>
+		<tomcat.version>9.0.56</tomcat.version>
+		<ical4j.version>4.0.0-alpha10</ical4j.version>
+		<cxf.version>3.4.5</cxf.version>
+		<io.prometheus.version>0.14.1</io.prometheus.version>
 		<aspectjtools.version>1.9.7</aspectjtools.version>
 		<simple-xml.version>2.7.1</simple-xml.version>
 		<jettison.version>1.4.1</jettison.version>
@@ -96,43 +97,48 @@
 		<src.pack.skip>false</src.pack.skip>
 		<h2.version>1.4.200</h2.version>
 		<commons-lang3.version>3.12.0</commons-lang3.version>
-		<javax.mail.version>1.6.2</javax.mail.version>
-		<openjpa.version>3.1.2</openjpa.version>
-		<asterisk-java.version>3.12.0</asterisk-java.version>
-		<commons-dbcp.version>2.8.0</commons-dbcp.version>
-		<commons-pool2.version>2.10.0</commons-pool2.version>
-		<commons-cli.version>1.4</commons-cli.version>
+		<jakarta.mail.version>2.0.1</jakarta.mail.version>
+		<openjpa.version>3.2.1-SNAPSHOT</openjpa.version>
+		<asterisk-java.version>3.24.0</asterisk-java.version>
+		<commons-dbcp.version>2.9.0</commons-dbcp.version>
+		<commons-pool2.version>2.11.1</commons-pool2.version>
+		<commons-cli.version>1.5.0</commons-cli.version>
 		<dom4j.version>2.1.3</dom4j.version>
 		<commons-codec.version>1.15</commons-codec.version>
 		<commons-io.version>2.11.0</commons-io.version>
-		<postgresql.version>42.2.23</postgresql.version>
-		<mysql.version>8.0.25</mysql.version>
-		<mssql.version>9.2.1.jre11</mssql.version>
-		<ojdbc.version>19.11.0.0</ojdbc.version>
+		<postgresql.version>42.3.1</postgresql.version>
+		<mysql.version>8.0.27</mysql.version>
+		<mssql.version>9.4.0.jre11</mssql.version>
+		<ojdbc.version>19.12.0.0</ojdbc.version>
 		<commons-collections4.version>4.4</commons-collections4.version>
-		<xstream.version>1.4.17</xstream.version>
+		<xstream.version>1.4.18</xstream.version>
 		<api-all.version>2.1.0</api-all.version>
-		<caldav4j.version>1.0.1</caldav4j.version>
-		<tika-parsers.version>1.27</tika-parsers.version>
+		<caldav4j.version>1.0.3</caldav4j.version>
+		<tika-parsers.version>2.2.0</tika-parsers.version>
 		<commons-text.version>1.9</commons-text.version>
-		<slf4j.version>1.7.31</slf4j.version>
-		<logback.version>1.2.3</logback.version>
-		<jetty.version>9.4.43.v20210629</jetty.version>
+		<slf4j.version>1.7.32</slf4j.version>
+		<logback.version>1.3.0-alpha10</logback.version>
+		<jetty.version>9.4.44.v20210927</jetty.version>
 		<license.excludedScopes>test</license.excludedScopes>
-		<bcprov-jdk15on.version>1.69</bcprov-jdk15on.version>
-		<mockito.version>3.11.2</mockito.version>
+		<bcprov-jdk15on.version>1.70</bcprov-jdk15on.version>
+		<mockito.version>4.2.0</mockito.version>
 		<quartz.version>2.3.2</quartz.version>
-		<kurento.version>6.16.1</kurento.version>
+		<kurento.version>6.16.2</kurento.version>
 		<jain-sip.version>1.2.307</jain-sip.version><!-- other versions are broken! -->
 		<jasny-bootstrap.version>3.1.3-2</jasny-bootstrap.version>
 		<jodconverter.version>4.4.2</jodconverter.version>
+		<jaxb-runtime.version>2.3.3</jaxb-runtime.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+		<jquery-ui-touch-punch.version>0.2.3-2</jquery-ui-touch-punch.version>
+		<apacheds-test-framework.version>2.0.0.AM26</apacheds-test-framework.version>
+		<swagger.version>2.1.11</swagger.version>
 		<!--  Exclude all generated code  -->
 		<sonar.exclusions>file:**/generated-sources/**, file:**/jquery-ui.css, file:**/cssemoticons.js, file:**/bootstrap-confirmation.js</sonar.exclusions>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 		<sonar.junit.reportPaths>target/surefire-reports</sonar.junit.reportPaths>
 		<jacoco.binary.path>${project.basedir}/../target/jacoco.exec</jacoco.binary.path>
+		<excluded.test.groups>heavy-test</excluded.test.groups>
 		<db_user></db_user>
 		<db_pass></db_pass>
 	</properties>
@@ -516,6 +522,21 @@
 				</exclusions>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.mnode.ical4j</groupId>
 				<artifactId>ical4j</artifactId>
 				<version>${ical4j.version}</version>
@@ -576,11 +597,6 @@
 			</dependency>
 			<dependency>
 				<groupId>io.prometheus</groupId>
-				<artifactId>simpleclient</artifactId>
-				<version>${io.prometheus.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.prometheus</groupId>
 				<artifactId>simpleclient_servlet</artifactId>
 				<version>${io.prometheus.version}</version>
 			</dependency>
@@ -588,11 +604,6 @@
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjtools</artifactId>
 				<version>${aspectjtools.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.tomcat</groupId>
-				<artifactId>tomcat-catalina</artifactId>
-				<version>${tomcat.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.codehaus.jettison</groupId>
@@ -607,24 +618,48 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-util</artifactId>
+				<version>${wicket.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-native-websocket-core</artifactId>
+				<version>${wicket.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-core</artifactId>
+				<version>${wicket.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-ioc</artifactId>
+				<version>${wicket.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
 				<artifactId>wicket-extensions</artifactId>
 				<version>${wicket.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-api</artifactId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 			<dependency>
-				<groupId>org.wicketstuff</groupId>
-				<artifactId>wicketstuff-datastore-hazelcast</artifactId>
-				<version>${wicketstuff.version}</version>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-auth-roles</artifactId>
+				<version>${wicket.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.googlecode.wicket-jquery-ui</groupId>
-				<artifactId>wicket-jquery-ui-calendar</artifactId>
-				<version>${wicket-jquery-ui.version}</version>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-native-websocket-javax</artifactId>
+				<version>${wicket.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-devutils</artifactId>
+				<version>${wicket.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-spring</artifactId>
+				<version>${wicket.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>
@@ -664,13 +699,9 @@
 			</dependency>
 			<dependency>
 				<groupId>org.apache.tika</groupId>
-				<artifactId>tika-parsers</artifactId>
+				<artifactId>tika-parsers-standard-package</artifactId>
 				<version>${tika-parsers.version}</version>
 				<exclusions>
-					<exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-log4j12</artifactId>
-					</exclusion>
 					<exclusion>
 						<groupId>xml-apis</groupId>
 						<artifactId>xml-apis</artifactId>
@@ -680,10 +711,23 @@
 						<artifactId>xercesImpl</artifactId>
 					</exclusion>
 					<exclusion>
-						<groupId>org.glassfish.jaxb</groupId>
-						<artifactId>jaxb-runtime</artifactId>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.apache.logging.log4j</groupId>
+						<artifactId>log4j-slf4j-impl</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tika</groupId>
+				<artifactId>tika-core</artifactId>
+				<version>${tika-parsers.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.websocket</groupId>
@@ -695,6 +739,12 @@
 				<groupId>org.kurento</groupId>
 				<artifactId>kurento-client</artifactId>
 				<version>${kurento.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.jodconverter</groupId>
@@ -711,6 +761,204 @@
 				<artifactId>jain-sip-ri</artifactId>
 				<version>${jain-sip.version}</version>
 			</dependency>
+			<dependency>
+				<!-- required for JAXB/CXF -->
+				<groupId>org.glassfish.jaxb</groupId>
+				<artifactId>jaxb-runtime</artifactId>
+				<version>${jaxb-runtime.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>jquery-ui-touch-punch</artifactId>
+				<version>${jquery-ui-touch-punch.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commons-collections4.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>${xstream.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.directory.api</groupId>
+				<artifactId>api-all</artifactId>
+				<version>${api-all.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>xml-apis</groupId>
+						<artifactId>xml-apis</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.mail</groupId>
+				<artifactId>jakarta.mail</artifactId>
+				<version>${jakarta.mail.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>${dom4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.wicketstuff</groupId>
+				<artifactId>wicketstuff-datastore-hazelcast</artifactId>
+				<version>${wicketstuff.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.openjpa</groupId>
+				<artifactId>openjpa</artifactId>
+				<version>${openjpa.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-dbcp2</artifactId>
+				<version>${commons-dbcp.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-pool2</artifactId>
+				<version>${commons-pool2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>${h2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${postgresql.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microsoft.sqlserver</groupId>
+				<artifactId>mssql-jdbc</artifactId>
+				<version>${mssql.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.oracle.database.jdbc</groupId>
+				<artifactId>ojdbc10</artifactId>
+				<version>${ojdbc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-cli</groupId>
+				<artifactId>commons-cli</artifactId>
+				<version>${commons-cli.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.caldav4j</groupId>
+				<artifactId>caldav4j</artifactId>
+				<version>${caldav4j.version}</version>
+				<exclusions>
+					<exclusion>
+						<!-- Remove the need for ehcache, since we use the Methods directly -->
+						<groupId>net.sf.ehcache</groupId>
+						<artifactId>ehcache</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>jasny-bootstrap</artifactId>
+				<version>${jasny-bootstrap.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.webjars</groupId>
+						<artifactId>bootstrap</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.wicketstuff</groupId>
+				<artifactId>wicketstuff-dashboard-core</artifactId>
+				<version>${wicketstuff.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.wicket-jquery-ui</groupId>
+				<artifactId>wicket-jquery-ui-core</artifactId>
+				<version>${wicket-jquery-ui.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.wicket-jquery-ui</groupId>
+				<artifactId>wicket-jquery-ui</artifactId>
+				<version>${wicket-jquery-ui.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.wicket-jquery-ui</groupId>
+				<artifactId>wicket-jquery-ui-calendar</artifactId>
+				<version>${wicket-jquery-ui.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.googlecode.wicket-jquery-ui</groupId>
+				<artifactId>wicket-jquery-ui-plugins</artifactId>
+				<version>${wicket-jquery-ui.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.wicketstuff</groupId>
+				<artifactId>wicketstuff-urlfragment</artifactId>
+				<version>${wicketstuff.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.wicketstuff</groupId>
+				<artifactId>wicketstuff-select2</artifactId>
+				<version>${wicketstuff.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.wicketstuff</groupId>
+				<artifactId>jqplot</artifactId>
+				<version>${wicketstuff.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.agilecoders.wicket</groupId>
+				<artifactId>wicket-bootstrap-extensions</artifactId>
+				<version>${wicket-bootstrap.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>de.agilecoders.wicket</groupId>
+				<artifactId>wicket-bootstrap-themes</artifactId>
+				<version>${wicket-bootstrap.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>font-awesome</artifactId>
+				<version>${font-awesome.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.swagger.core.v3</groupId>
+				<artifactId>swagger-annotations</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+
+			<!-- TESTS -->
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-inline</artifactId>
@@ -729,19 +977,40 @@
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.directory.server</groupId>
+				<artifactId>apacheds-test-framework</artifactId>
+				<version>${apacheds-test-framework.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.apache.directory.api</groupId>
+						<artifactId>api-ldap-schema-data</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>junit</groupId>
+						<artifactId>junit</artifactId>
+					</exclusion>
+				</exclusions>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat.embed</groupId>
+				<artifactId>tomcat-embed-websocket</artifactId>
+				<version>${tomcat.version}</version>
+				<scope>test</scope>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -775,7 +1044,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<configuration>
-					<skip>${om.quick.build}</skip>
+					<skip>${site.skip}</skip>
 				</configuration>
 				<executions>
 					<execution>
@@ -786,13 +1055,6 @@
 						</goals>
 					</execution>
 				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>io.github.devacfr.maven.skins</groupId>
-						<artifactId>reflow-velocity-tools</artifactId>
-						<version>${reflow-maven-skin.version}</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -865,34 +1127,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>${maven-checkstyle-plugin.version}</version>
-				<configuration>
-					<checkstyleRules>
-						<module name = "Checker">
-							<property name="fileExtensions" value="java,js,css,xml"/>
-							<module name="NewlineAtEndOfFile">
-								<property name="fileExtensions" value="java"/>
-							</module>
-							<module name="TreeWalker">
-								<module name="UnusedImports"></module>
-								<module name="RegexpSinglelineJava">
-									<property name="format" value="^\t* "/>
-									<property name="message" value="Indent must use tab characters"/>
-									<property name="ignoreComments" value="true"/>
-								</module>
-							</module>
-							<module name="RegexpSingleline">
-								<property name="format" value="\s+$"/>
-								<property name="message" value="Line has trailing spaces."/>
-							</module>
-						</module>
-					</checkstyleRules>
-					<includeTestSourceDirectory>true</includeTestSourceDirectory>
-					<encoding>UTF-8</encoding>
-					<consoleOutput>true</consoleOutput>
-					<failsOnError>true</failsOnError>
-					<excludes>**/module-info.java,**/module-info.test</excludes>
-				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -954,6 +1188,38 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>${maven-checkstyle-plugin.version}</version>
+					<configuration>
+						<checkstyleRules>
+							<module name = "Checker">
+								<property name="fileExtensions" value="java,js,css,xml"/>
+								<module name="NewlineAtEndOfFile">
+									<property name="fileExtensions" value="java"/>
+								</module>
+								<module name="TreeWalker">
+									<module name="UnusedImports"></module>
+									<module name="RegexpSinglelineJava">
+										<property name="format" value="^\t* "/>
+										<property name="message" value="Indent must use tab characters"/>
+										<property name="ignoreComments" value="true"/>
+									</module>
+								</module>
+								<module name="RegexpSingleline">
+									<property name="format" value="\s+$"/>
+									<property name="message" value="Line has trailing spaces."/>
+								</module>
+							</module>
+						</checkstyleRules>
+						<includeTestSourceDirectory>true</includeTestSourceDirectory>
+						<encoding>UTF-8</encoding>
+						<consoleOutput>true</consoleOutput>
+						<failsOnError>true</failsOnError>
+						<excludes>**/module-info.java,**/module-info.test</excludes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
 					<version>${maven-assembly-plugin.version}</version>
 				</plugin>
@@ -966,6 +1232,13 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
 					<version>${maven-site-plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>io.github.devacfr.maven.skins</groupId>
+							<artifactId>reflow-velocity-tools</artifactId>
+							<version>${reflow-maven-skin.version}</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -973,7 +1246,9 @@
 					<version>${maven-surefire-plugin.version}</version>
 					<configuration>
 						<forkCount>1</forkCount>
-						<reuseForks>false</reuseForks>
+						<reuseForks>true</reuseForks>
+						<useModulePath>false</useModulePath>
+						<excludedGroups>${excluded.test.groups}</excludedGroups>
 						<includes>
 							<include>**/Test*.java</include>
 						</includes>
@@ -1189,6 +1464,151 @@
 						<installDirectory>${project.build.directory}</installDirectory>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.openjpa</groupId>
+					<artifactId>openjpa-maven-plugin</artifactId>
+					<version>${openjpa.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.openjpa</groupId>
+							<artifactId>openjpa</artifactId>
+							<!-- set the version to be the same as the level in your runtime -->
+							<version>${openjpa.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>${exec-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>com.samaxes.maven</groupId>
+					<artifactId>minify-maven-plugin</artifactId>
+					<version>${minify-maven-plugin.version}</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.google.javascript</groupId>
+							<artifactId>closure-compiler</artifactId>
+							<version>v20170521</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>${jetty.version}</version>
+					<configuration>
+						<systemProperties>
+							<systemProperty>
+								<name>current_openmeetings_log_dir</name>
+								<value>${project.build.directory}</value>
+							</systemProperty>
+							<systemProperty>
+								<name>maven.project.build.directory.test-classes</name>
+								<value>${project.basedir}/src/test/resources</value>
+							</systemProperty>
+						</systemProperties>
+						<webApp>
+							<contextPath>/openmeetings</contextPath>
+							<descriptor>${project.basedir}/src/test/jetty/web.xml</descriptor>
+						</webApp>
+						<jettyXml>${project.basedir}/src/test/jetty/jetty.xml,${project.basedir}/src/test/jetty/jetty-ssl.xml,${project.basedir}/src/test/jetty/jetty-http.xml,${project.basedir}/src/test/jetty/jetty-https.xml</jettyXml>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>${license-maven-plugin.version}</version>
+					<configuration>
+						<outputDirectory>${project.build.directory}</outputDirectory>
+						<excludedScopes>test,provided</excludedScopes>
+						<useMissingFile>true</useMissingFile>
+						<fileTemplate>${project.basedir}/src/license/license-template.ftl</fileTemplate>
+						<licenseMerges>
+							<licenseMerge>
+								Apache License Version 2.0|
+								The Apache Software License, Version 2.0|
+								Apache 2.0|
+								ASF 2.0|
+								Apache License 2.0|
+								Apache License v2.0|
+								Apache 2.0 License|
+								Apache License v2|
+								The Apache License, Version 2.0|
+								Apache License, Version 2.0|
+								Apache Software Licenses|
+								Apache License, Version 2.0 and
+    Common Development And Distribution License (CDDL) Version 1.0|
+								http://www.apache.org/licenses/LICENSE-2.0.txt
+							</licenseMerge>
+							<licenseMerge>
+								Eclipse Public License - v 1.0|
+								MPL 2.0 or EPL 1.0
+							</licenseMerge>
+							<licenseMerge>
+								Eclipse Public License - v 2.0|
+								EPL 2.0
+							</licenseMerge>
+							<licenseMerge>
+								Eclipse Distribution License - v 1.0|
+								EDL 1.0
+							</licenseMerge>
+							<licenseMerge>
+								MIT License|
+								The MIT License|
+								MIT
+							</licenseMerge>
+							<licenseMerge>
+								Common Development and Distribution License (CDDL) v1.0|
+								CDDL/GPLv2+CE|
+								CDDL + GPLv2 with classpath exception|
+								CDDL, v1.0
+							</licenseMerge>
+							<licenseMerge>
+								BSD License|
+								BSD license|
+								BSD|
+								The BSD License
+							</licenseMerge>
+							<licenseMerge>
+								BSD 3-Clause|
+								BSD-3-Clause|
+								iCal4j - License|
+								The BSD 3-Clause License (BSD3)|
+								BSD 3-clause License w/nuclear disclaimer|
+								BSD 3-clause New License
+							</licenseMerge>
+						</licenseMerges>
+						<verbose>false</verbose>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>${maven-gpg-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>net.nicoulaj.maven.plugins</groupId>
+					<artifactId>checksum-maven-plugin</artifactId>
+					<version>${checksum-maven-plugin.version}</version>
+					<configuration>
+						<shasumSummary>true</shasumSummary>
+						<algorithms>
+							<algorithm>SHA-512</algorithm>
+						</algorithms>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>io.openapitools.swagger</groupId>
+					<artifactId>swagger-maven-plugin</artifactId>
+					<version>${swagger-plugin.version}</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -1289,6 +1709,7 @@
 			<id>quick</id>
 			<properties>
 				<maven.test.skip>true</maven.test.skip>
+				<site.skip>true</site.skip>
 				<om.quick.build>true</om.quick.build>
 				<om.notquick.build>false</om.notquick.build>
 				<wicket.configuration>DEVELOPMENT</wicket.configuration>
@@ -1303,7 +1724,6 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
-						<version>${maven-source-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>attach-sources</id>
@@ -1328,7 +1748,6 @@
 					<plugin>
 						<groupId>net.nicoulaj.maven.plugins</groupId>
 						<artifactId>checksum-maven-plugin</artifactId>
-						<version>${checksum-maven-plugin.version}</version>
 						<executions>
 							<execution>
 								<goals>
@@ -1336,16 +1755,10 @@
 								</goals>
 							</execution>
 						</executions>
-						<configuration>
-							<shasumSummary>true</shasumSummary>
-							<algorithms>
-								<algorithm>SHA-512</algorithm>
-							</algorithms>
-						</configuration>
 					</plugin>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>${maven-gpg-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -1379,7 +1792,6 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>license-maven-plugin</artifactId>
-						<version>${license-maven-plugin.version}</version>
 						<executions>
 							<execution>
 								<id>download-licenses</id>
@@ -1445,17 +1857,9 @@
 		</profile>
 		<profile>
 			<id>Jenkins</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<excludedGroups>org.apache.openmeetings.test.NonJenkinsTests</excludedGroups>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
+			<properties>
+				<excluded.test.groups>heavy-test,non-jenkins</excluded.test.groups>
+			</properties>
 		</profile>
 		<profile>
 			<id>only-eclipse</id>

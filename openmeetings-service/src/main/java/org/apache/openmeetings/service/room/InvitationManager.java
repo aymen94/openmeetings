@@ -22,12 +22,13 @@ import static java.util.UUID.randomUUID;
 import static org.apache.openmeetings.db.entity.calendar.Appointment.allowedStart;
 import static org.apache.openmeetings.db.util.ApplicationHelper.ensureApplication;
 import static org.apache.openmeetings.db.util.TimezoneUtil.getTimeZone;
+import static org.apache.openmeetings.util.CalendarHelper.getZoneDateTime;
 
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.apache.openmeetings.IApplication;
 import org.apache.openmeetings.core.mail.MailHandler;
+import org.apache.openmeetings.db.IApplication;
 import org.apache.openmeetings.db.dao.room.InvitationDao;
 import org.apache.openmeetings.db.entity.basic.MailMessage;
 import org.apache.openmeetings.db.entity.calendar.Appointment;
@@ -117,14 +118,15 @@ public class InvitationManager implements IInvitationManager {
 			if (invitationLink != null) {
 				desc += (desc.isEmpty() ? "" : "\n\n\n") + invitationLink;
 			}
+			String tzid = getTimeZone(owner).getID();
 			IcalHandler handler = new IcalHandler(MessageType.CANCEL == type ? IcalHandler.ICAL_METHOD_CANCEL : IcalHandler.ICAL_METHOD_REQUEST)
-					.createVEvent(getTimeZone(owner).getID(), a.getStart(), a.getEnd(), a.getTitle())
+					.createVEvent(getZoneDateTime(a.getStart(), tzid), getZoneDateTime(a.getEnd(), tzid), a.getTitle())
 					.addOrganizer(replyToEmail, owner.getDisplayName())
 					.setUid(a.getIcalId())
 					.addAttendee(email, i.getInvitee().getDisplayName(), isOwner)
-					.setCreated(a.getInserted())
+					.setCreated(getZoneDateTime(a.getInserted(), tzid))
 					.setDescription(desc)
-					.setModified(a.getUpdated())
+					.setModified(getZoneDateTime(a.getUpdated(), tzid))
 					.setLocation(a.getLocation())
 					.setSequence(0)
 					.build();

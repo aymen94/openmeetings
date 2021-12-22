@@ -23,10 +23,10 @@ import static java.time.Duration.ZERO;
 import static org.apache.openmeetings.core.remote.KurentoHandler.activityAllowed;
 import static org.apache.openmeetings.core.util.ChatWebSocketHelper.ID_USER_PREFIX;
 import static org.apache.openmeetings.db.entity.calendar.Appointment.allowedStart;
-import static org.apache.openmeetings.util.OmFileHelper.EXTENSION_PDF;
 import static org.apache.openmeetings.web.app.WebSession.getDateFormat;
 import static org.apache.openmeetings.web.app.WebSession.getUserId;
 import static org.apache.openmeetings.web.room.wb.WbPanel.WB_JS_REFERENCE;
+import static org.apache.openmeetings.util.OmFileHelper.EXTENSION_PDF;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -46,20 +46,17 @@ import org.apache.openmeetings.db.dao.file.FileItemDao;
 import org.apache.openmeetings.db.dao.user.UserDao;
 import org.apache.openmeetings.db.entity.basic.Client;
 import org.apache.openmeetings.db.entity.calendar.Appointment;
-import org.apache.openmeetings.db.entity.calendar.MeetingMember;
 import org.apache.openmeetings.db.entity.file.BaseFileItem;
 import org.apache.openmeetings.db.entity.room.Room;
 import org.apache.openmeetings.db.entity.room.Room.Right;
 import org.apache.openmeetings.db.entity.room.Room.RoomElement;
 import org.apache.openmeetings.db.entity.room.RoomGroup;
 import org.apache.openmeetings.db.entity.server.SOAPLogin;
-import org.apache.openmeetings.db.entity.user.GroupUser;
-import org.apache.openmeetings.db.entity.user.User;
 import org.apache.openmeetings.db.util.AuthLevelUtil;
 import org.apache.openmeetings.db.util.ws.RoomMessage;
 import org.apache.openmeetings.db.util.ws.RoomMessage.Type;
 import org.apache.openmeetings.db.util.ws.TextRoomMessage;
-import org.apache.openmeetings.util.NullStringer;
+import org.apache.openmeetings.web.app.Application;
 import org.apache.openmeetings.web.app.ClientManager;
 import org.apache.openmeetings.web.app.QuickPollManager;
 import org.apache.openmeetings.web.app.TimerService;
@@ -73,6 +70,7 @@ import org.apache.openmeetings.web.room.wb.InterviewWbPanel;
 import org.apache.openmeetings.web.room.wb.WbAction;
 import org.apache.openmeetings.web.room.wb.WbPanel;
 import org.apache.openmeetings.web.util.ExtendedClientProperties;
+import org.apache.openmeetings.util.NullStringer;
 import org.apache.openmeetings.web.util.TouchPunchResourceReference;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
@@ -332,47 +330,17 @@ public class RoomPanel extends BasePanel {
 		} else if (r.getId().equals(WebSession.get().getRoomId())) {
 			// secureHash/invitationHash, already checked
 		} else {
-			boolean allowed = false;
+			boolean allowed = Application.get().isRoomAllowedToUser(r, c.getUser());
 			String deniedMessage = null;
 			if (r.isAppointment()) {
 				Appointment a = apptDao.getByRoom(r.getId());
-				if (a != null && !a.isDeleted()) {
-					boolean isOwner = a.getOwner().getId().equals(getUserId());
-					allowed = isOwner;
-					log.debug("appointed room, isOwner ? {}", isOwner);
-					if (!allowed) {
-						for (MeetingMember mm : a.getMeetingMembers()) {
-							if (getUserId().equals(mm.getUser().getId())) {
-								allowed = true;
-								break;
-							}
-						}
-					}
-					if (allowed) {
-						Calendar cal = WebSession.getCalendar();
-						if (isOwner || cal.getTime().after(allowedStart(a.getStart())) && cal.getTime().before(a.getEnd())) {
-							eventDetail = new EventDetailDialog(EVENT_DETAILS_ID, a);
-						} else {
-							allowed = false;
-							deniedMessage = String.format("%s %s - %s", getString("error.hash.period"), getDateFormat().format(a.getStart()), getDateFormat().format(a.getEnd()));
-						}
-					}
-				}
-			} else {
-				allowed = r.getIspublic() || (r.getOwnerId() != null && r.getOwnerId().equals(getUserId()));
-				log.debug("public ? {}, ownedId ? {} {}", r.getIspublic(), r.getOwnerId(), allowed);
-				if (!allowed) {
-					User u = c.getUser();
-					for (RoomGroup ro : r.getGroups()) {
-						for (GroupUser ou : u.getGroupUsers()) {
-							if (ro.getGroup().getId().equals(ou.getGroup().getId())) {
-								allowed = true;
-								break;
-							}
-						}
-						if (allowed) {
-							break;
-						}
+				if (allowed) {
+					Calendar cal = WebSession.getCalendar();
+					if (a.isOwner(getUserId()) || cal.getTime().after(allowedStart(a.getStart())) && cal.getTime().before(a.getEnd())) {
+						eventDetail = new EventDetailDialog(EVENT_DETAILS_ID, a);
+					} else {
+						allowed = false;
+						deniedMessage = String.format("%s %s - %s", getString("error.hash.period"), getDateFormat().format(a.getStart()), getDateFormat().format(a.getEnd()));
 					}
 				}
 			}
@@ -550,6 +518,9 @@ public class RoomPanel extends BasePanel {
 					case WB_PUT_FILE:
 						onWbPutFile((TextRoomMessage)m);
 						break;
+					case FILE_TREE_UPDATE:
+						onFileTreeUpdate(handler);
+						break;
 				}
 			}
 		}
@@ -634,6 +605,10 @@ public class RoomPanel extends BasePanel {
 	private void onWbPutFile(TextRoomMessage m) {
 		JSONObject obj = new JSONObject(m.getText());
 		getWb().sendFileToWb(fileDao.getAny(obj.getLong("fileId")), obj.getBoolean("clean"));
+	}
+
+	private void onFileTreeUpdate(IPartialPageRequestHandler handler) {
+		sidebar.getFilesPanel().update(handler);
 	}
 
 	private String getQuickPollJs() {

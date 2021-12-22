@@ -26,10 +26,10 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 import org.apache.commons.lang3.time.FastDateFormat;
-import org.apache.openmeetings.IApplication;
 import org.apache.openmeetings.core.util.ws.WsMessageChat;
 import org.apache.openmeetings.core.util.ws.WsMessageChat2All;
 import org.apache.openmeetings.core.util.ws.WsMessageChat2User;
+import org.apache.openmeetings.db.IApplication;
 import org.apache.openmeetings.db.entity.basic.ChatMessage;
 import org.apache.openmeetings.db.entity.room.Room.Right;
 import org.apache.openmeetings.db.entity.user.User;

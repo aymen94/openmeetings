@@ -28,12 +28,12 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import org.apache.openmeetings.IApplication;
 import org.apache.openmeetings.core.util.ws.WsMessageAll;
 import org.apache.openmeetings.core.util.ws.WsMessageRoom;
 import org.apache.openmeetings.core.util.ws.WsMessageRoomMsg;
 import org.apache.openmeetings.core.util.ws.WsMessageRoomOthers;
 import org.apache.openmeetings.core.util.ws.WsMessageUser;
+import org.apache.openmeetings.db.IApplication;
 import org.apache.openmeetings.db.entity.basic.Client;
 import org.apache.openmeetings.db.entity.basic.IWsClient;
 import org.apache.openmeetings.db.manager.IClientManager;
